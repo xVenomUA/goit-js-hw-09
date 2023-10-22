@@ -6,12 +6,28 @@
     <title>Countdown timer</title>
     <link rel="stylesheet" href="css/common.css" />
   </head>
+  <style>
+    .timer {
+      display: flex;
+      gap: 10px;
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .value {
+      font-size: 30px;
+      font-weight: 500;
+    }
+  </style>
   <body>
     <p><a href="index.html">Go back</a></p>
 
     <input type="text" id="datetime-picker" />
     <button type="button" data-start>Start</button>
-
+    
     <div class="timer">
       <div class="field">
         <span class="value" data-days>00</span>

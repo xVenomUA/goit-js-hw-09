@@ -11,7 +11,7 @@ let backColor = null;
 const onClickStart = () => { 
     backColor = setInterval(() => {
         bodyColor.style.backgroundColor = getRandomHexColor(); 
-    }, 3000);
+    }, 750);
     startColor.setAttribute('disabled', true);
 }
 startColor.addEventListener('click', onClickStart); 
