@@ -48,6 +48,6 @@ function onclick(evt) {
         );
       });
   }
-  form.reset();
+  evt.target.reset();
 }
 btnform.addEventListener('submit', onclick);

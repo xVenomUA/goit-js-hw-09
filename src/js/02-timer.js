@@ -7,6 +7,7 @@ const calHours = document.querySelector('span[data-hours]');
 const calMinutes = document.querySelector('span[data-minutes]');
 const calSeconds = document.querySelector('span[data-seconds]');
 const start = document.querySelector('button[data-start]');
+start.setAttribute('disabled', true);
 let time = 0;
 let timer = null;
 const optionsofReturt = {
@@ -16,8 +17,8 @@ const optionsofReturt = {
   distance: '15px',
   borderRadius: '15px',
 };
-const markup = `<button type="button" data-stop>Stop</button>
-    <button type="button" data-reset>Reset</button>
+const markup = `<button type="button" data-stop disabled>Stop</button>
+    <button type="button" data-reset disabled>Reset</button>
 `;
 start.insertAdjacentHTML('afterend', markup);
 const stop = document.querySelector('button[data-stop]');
@@ -64,6 +65,8 @@ const options = {
     calHours.textContent = addLeadingZero(hours);
     calMinutes.textContent = addLeadingZero(minutes);
     calSeconds.textContent = addLeadingZero(seconds);
+    start.removeAttribute('disabled');
+    reset.removeAttribute('disabled');
   },
 };
 flatpickr(calendar, options);
@@ -74,7 +77,8 @@ const onClickStart = () => {
       clearInterval(timer);
         Notiflix.Notify.info('Time is over', optionsofReturt);
         Notiflix.Notify.info('Chose a new data', optionsofReturt);
-        start.removeAttribute('disabled');
+      start.removeAttribute('disabled');
+      
       return;
     }
     const { days, hours, minutes, seconds } = convertMs(time);
@@ -84,8 +88,9 @@ const onClickStart = () => {
     calSeconds.textContent = addLeadingZero(seconds);
     time -= 1000;
     }, 1000);
-    
   start.setAttribute('disabled', true);
+  reset.removeAttribute('disabled');
+  stop.removeAttribute('disabled');
 };
 start.addEventListener('click', onClickStart);
 stop.addEventListener('click', () => {
@@ -100,5 +105,8 @@ reset.addEventListener('click', () => {
   calMinutes.textContent = '00';
     calSeconds.textContent = '00';
     time = 0; 
-    Notiflix.Notify.info('Timer was reseted', optionsofReturt);
+  Notiflix.Notify.info('Timer was reseted', optionsofReturt);
+  start.setAttribute('disabled', true);
+  stop.setAttribute('disabled', true);
+  reset.setAttribute('disabled', true);
 });
